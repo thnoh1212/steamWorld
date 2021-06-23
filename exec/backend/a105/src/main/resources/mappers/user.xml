@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.a105.apiServer.dao.UserDao">
+	<select id="login" parameterType="map" resultType="UserDto">
+		select *
+		from a105.user
+		where userid = #{userid} and password = #{password}
+	</select>
+	
+	<insert id="insertUser" parameterType="UserDto">
+		insert into a105.user (userid, nickname, password)
+		values(#{userid},#{nickname},#{password})
+	</insert>
+	
+	<select id="getUser" parameterType="String" resultType="UserDto">
+		select * from a105.user
+		where userid = #{userid}
+	</select>
+	
+	<update id="updateUser" parameterType="UserDto">
+		update a105.user 
+		set nickname = #{nickname}
+		where userid = #{userid}
+	</update>
+	
+	<update id="updatePassword" parameterType="map">
+		update a105.user set password = #{newpassword} 
+		where userid = #{userid}
+	</update>
+	
+	
+	<delete id="deleteUser" parameterType="map">
+		delete from a105.user
+		where userid = #{userid} and password = #{password}
+	</delete>
+	
+	<select id="checkid" parameterType="String" resultType="String">
+		select userid
+		from a105.user
+		where userid = #{userid}
+	</select>
+	
+	<update id="addSteamid" parameterType="map">
+		update a105.user
+		set steamid = #{steamid}
+		where userid = #{userid}
+	</update>
+</mapper>

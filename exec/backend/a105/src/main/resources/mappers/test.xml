@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a105.apiServer.dao.TestDao">
+	<select id="searchAll" resultType="TestDto">
+		select *
+		from a105.test
+	</select>
+	
+	<insert id="insertTest" parameterType="TestDto">
+		insert into a105.test (testId, testDesc)
+		values (#{testId}, #{testDesc})
+	</insert>
+</mapper>

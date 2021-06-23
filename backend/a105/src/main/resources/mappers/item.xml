@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.a105.apiServer.dao.ItemDao">
+	<select id="getItemList" parameterType="String" resultType="ItemDto">
+		select * from a105.item
+		where userid = #{userid} and issteam = #{issteam}
+	</select>
+	
+	<select id="getItem" parameterType="String" resultType="ItemDto">
+		select * from a105.item
+		where userid = #{userid} and appid = #{appid}
+	</select>
+	
+	<insert id="addItem" parameterType="ItemDto">
+		insert into a105.item (userid, appid, playtime_forever, playtime_2weeks, issteam)
+		values(#{userid}, #{appid}, #{playtime_forever}, #{playtime_2weeks}, #{issteam})
+	</insert>
+	
+	<delete id="deleteItem" parameterType="map">
+		delete from a105.item
+		where userid = #{userid} and appid = #{appid}
+	</delete>
+	
+	<select id="getUserItem" parameterType="map" resultType="UserItemDto">
+		select a.steamid, b.appid, b.playtime_forever, b.playtime_2weeks
+		from a105.user as a, a105.item as b
+		where a.userid = #{userid} and a.userid = b.userid and b.issteam = 1
+	</select>
+</mapper>

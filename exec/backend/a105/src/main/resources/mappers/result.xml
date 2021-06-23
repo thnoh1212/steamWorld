@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.a105.apiServer.dao.ResultDao">
+	<select id="getResultList" parameterType="map" resultType="ResultDto">
+		select * from a105.result
+		where userid = #{userid}
+	</select>
+	
+	<select id="getResult" parameterType="map" resultType="ResultDto">
+		select * from a105.result
+		where userid = #{userid} and appid = #{appid}
+	</select>
+	
+	<insert id="insertResult" parameterType="ResultDto">
+		insert into a105.result (appid, name, score, vote, storelink, imgsrc, shortDes, dev, fullDes, userid)
+		values(#{appid}, #{name}, #{score}, #{vote}, #{storelink}, #{imgsrc}, #{shortDes}, #{dev}, #{fullDes}, #{userid})
+	</insert>
+	
+	<delete id="deleteResult" parameterType="String">
+		delete from a105.result
+		where userid = #{userid}
+	</delete>
+</mapper>
